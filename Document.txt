@@ -26,3 +26,5 @@ git reset --hard HEAD~1
 git reset
 git config – global user.name và git config – global user.email
 VD:  git config -- global user.name = “tên” và git config – global user.email = “email”
+git reset HEAD~1
+git push --force
