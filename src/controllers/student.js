@@ -1,5 +1,7 @@
+import HttpStatusCode from "../exceptions/HttpStatusCode.js"
+
 const getStudent = async (req, res) => {
-    res.status(200).json({
+    res.status(HttpStatusCode.OK).json({
         message: 'Get student successfully',
         data: [
             {

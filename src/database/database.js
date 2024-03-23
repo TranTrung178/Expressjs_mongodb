@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import dotenv from 'dotenv'
+import Exception from "../exceptions/Exception.js";
 dotenv.config()
 
 async function connect () {
@@ -13,11 +14,11 @@ async function connect () {
     debugger
     const {code} = error
     if (error.code == 8000)
-      throw new Error("Wrong database' username or password")
+      throw new Exception(Exception.WRONG_DB_USERNAME_PW)
     else if (error.code == 'ENOTFOUND')
-      throw new Error("Wrong server name/connecting string ")
+      throw new Exception(Exception.WRONG_CONNECTION_STRING)
 
-    throw new Error('Cannot connect to Mongoose')
+    throw new Exception(Exception.CANNOT_TO_MONGOOSE)
     
   }
 }
