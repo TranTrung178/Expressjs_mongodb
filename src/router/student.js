@@ -8,4 +8,6 @@ router.get('/:id', studentController.getStudentDetail)
 
 router.post('/insert', studentController.insert)
 
+router.patch('/update', studentController.updateStudent)
+
 export default router

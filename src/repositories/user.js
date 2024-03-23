@@ -2,6 +2,7 @@
 
 const login = async ({email, password}) => {
     console.log('login user success, good good')
+    
 }
 
 const register = async ({
@@ -11,7 +12,7 @@ const register = async ({
     phoneNumber,
     address
 }) => {
-    console.log (`register ${name + email + password + phoneNumber}`)
+    console.log (`register ${name + email + password + phoneNumber }`)
 }
 
 export default {

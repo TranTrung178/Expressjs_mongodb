@@ -2,6 +2,8 @@ import express from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
 
+import connect from './database/database.js'
+
 import { userRouter, studentRouter } from './router/index.js'
 
 const port = process.env.PORT
@@ -16,7 +18,7 @@ app.get('/', (req, res) => {
     res.send(`response from root`)
 })
 
-app.listen(port, () => {
+app.listen(port, async() => {
+    await connect()
     console.log(`Listening port ${port}`)
-    console.log('testgit')     //---
-})  
+});

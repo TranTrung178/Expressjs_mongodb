@@ -24,8 +24,13 @@ const insert = async (req, res) => {
     res.send(`POST insert student`)
 }
 
+const updateStudent = async (req, res) => {
+    res.send(`Update student`)
+}
+
 export default{
     getStudent,
     getStudentDetail, 
-    insert
+    insert,
+    updateStudent
 }

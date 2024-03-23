@@ -4,6 +4,8 @@ import { userController } from '../controllers/index.js'
 const router = express.Router()
 
 router.get('/', userController.getUser )
+router.get('/:id', userController.getUserDetail )
+
 
 router.post('/login',
     body('email').isEmail(),

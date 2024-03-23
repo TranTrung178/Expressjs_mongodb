@@ -30,7 +30,7 @@ const getUser = async (req, res) => {
 
 const getUserDetail = async (req, res) => {
     res.status(200).json({
-        message: 'GET users by id successfully'
+        message: 'GET users by id successfully ' + req?.params?.id + ""
     })
 }
 
@@ -46,9 +46,9 @@ const register = async (req, res) => {
 
     await userRepository.register( {name, email, password, phoneNumber, address} )
 
-    myEvent.emit('event.register.user', {x: 1, y: 2})
+    myEvent.emit('event.register.user', {email, phoneNumber})
 
-    res.status(200).json({
+    res.status(201).json({
         message: 'POST register user successfully'
     })
 }
