@@ -9,7 +9,7 @@ router.get('/:id', userController.getUserDetail )
 
 router.post('/login',
     body('email').isEmail(),
-    body('password').isLength({ min: 5 })
+    body('password').isLength({ min: 2 })
     , userController.login)
 
 router.post('/register', userController.register)

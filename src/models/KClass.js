@@ -1,6 +1,5 @@
 import { ObjectId } from "mongodb"
 import mongoose, { Schema } from "mongoose"
-import isEmail from "validator/lib/isemail.js"
 
 export default mongoose.model('Class',
     new Schema({

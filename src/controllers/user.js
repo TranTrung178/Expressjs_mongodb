@@ -1,6 +1,6 @@
 import { body, param, validationResult } from 'express-validator'
 import { userRepository } from '../repositories/index.js'
-import {EventEmitter} from 'node:events'
+import { EventEmitter } from 'node:events'
 import HttpStatusCode from '../exceptions/HttpStatusCode.js'
 import Exception from '../exceptions/Exception.js'
 const myEvent = new EventEmitter()
@@ -16,12 +16,22 @@ const login = async (req, res) => {
     }
 
     const { email, password } = req.body
+ 
+    try {
+        let existUser = await userRepository.login({ email, password })
 
-    await userRepository.login({ email, password })
+        res.status(HttpStatusCode.OK).json({
+            message: 'Login successfully',
+            data: existUser
+        })
+        
+    } catch (error) {
 
-    res.status(HttpStatusCode.OK).json({
-        message: 'Login successfully'
-    })
+        res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
+            message: error.toString()
+        })
+        
+    }
 }
 
 const getUser = async (req, res) => {
@@ -47,22 +57,21 @@ const register = async (req, res) => {
     } = req.body
 
     try {
-       const user = await userRepository.register( {name, email, password, phoneNumber, address} )
+        const user = await userRepository.register({ name, email, password, phoneNumber, address })
 
 
-       res.status(HttpStatusCode.INSERT_OK).json({
-        message: 'POST register user successfully',
-        data: user
+        res.status(HttpStatusCode.INSERT_OK).json({
+            message: 'POST register user successfully',
+            data: user
         })
     } catch (exceptions) {
 
-        debugger
         res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
             message: exceptions.toString()
         })
-        
+
     }
-    myEvent.emit('event.register.user', {email, phoneNumber})
+    myEvent.emit('event.register.user', { email, phoneNumber })
 
 }
 
